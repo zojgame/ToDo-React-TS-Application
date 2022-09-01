@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+}
+
+.to-do-list{
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vh;
+  width: 60vw;
+  min-height: 80vh;
+  background: white;
+  color: #282c34;
+
+}
+.item{
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 3px;
+  grid-row-gap: 5px;
+
+  padding: 1%;
+}
+
+.item div{
+  border:2px solid #282c34;
+
+}
+
+.square-field{
+  background: aqua;
+  grid-column-start: 1;
+}
+.square-field:hover{
+  border: 2px solid red;
+  cursor: pointer;
+}
+
+.text-field{
+  grid-column: 2/11;
+}
+
+.checked-item{
+  background-image: url(images/1632598.png) ;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+
+
+}
+
+
+
+
+
+
