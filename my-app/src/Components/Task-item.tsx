@@ -8,8 +8,8 @@ export function TaskComponent() : JSX.Element{
 
     return (
     <>
-        <div className={`square-field` + isChecked ? `checked-item` : ``} onClick={handleClick}></div>
-        <div className='text-field'>fsdfs</div>
+        <div className={isChecked ? `square-field checked-item` : `square-field`} onClick={handleClick}></div>
+        <div className={isChecked ? `text-field item-done` : `text-field`}><p>fsdfs</p></div>
     </>);
 }
 

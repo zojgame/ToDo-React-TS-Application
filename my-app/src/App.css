@@ -32,6 +32,7 @@
   background: aqua;
   grid-column-start: 1;
 }
+
 .square-field:hover{
   border: 2px solid red;
   cursor: pointer;
@@ -41,14 +42,23 @@
   grid-column: 2/11;
 }
 
+.text-field p{
+  display: inline-block;
+  vertical-align: middle;
+  border-bottom: #282c34 dashed;
+  padding: 0 2% 1% 2%;
+}
+
+.item-done p
+{
+  text-decoration: line-through;
+}
+
 .checked-item{
   background-image: url(images/1632598.png) ;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-
-
-
 }
 
 
