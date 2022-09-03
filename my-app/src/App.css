@@ -11,21 +11,19 @@
   min-height: 80vh;
   background: white;
   color: #282c34;
-
 }
+
 .item{
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-column-gap: 3px;
   grid-row-gap: 5px;
-
   padding: 1%;
 }
 
 .item div{
   border:2px solid #282c34;
-
 }
 
 .square-field{
@@ -47,9 +45,9 @@
   vertical-align: middle;
   min-width: 10vw;
   border-bottom: #282c34 dashed;
-  padding: 0% 2% 1% 2%;
-  
+  padding: 0% 2% 1% 2%;  
 }
+
 .text-field p:hover {
   cursor:pointer;
 }
@@ -74,7 +72,6 @@
   outline: none;
   border-bottom: red dashed;
 }
-
 
 .item-done p
 {

@@ -1,4 +1,6 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
+
+const ItemTextContext = React.createContext({itemTextValue : ''});
 
 export function TaskComponent() : JSX.Element{
     const [isChecked, clickCheck] = useState(false);
@@ -25,16 +27,19 @@ export function TaskComponent() : JSX.Element{
     }
 
     return (
-    <>
+    
+    <ItemTextContext.Provider value ={{itemTextValue}}>
         <div className={isChecked ? `square-field checked-item` : `square-field`} onClick={handleClickSquare}></div>
-        {isEditing 
-        ? (<TaskEdit isChecked={isChecked} handleKeyPress={handleKeyPress} itemTextValue={itemTextValue} setItemTextValue={handleOnInputChange}/>) 
-        : <TaskItem isChecked={isChecked} handleClickEdit={handleClickEdit} itemTextValue={itemTextValue}/>}
-    </>);
+            {isEditing 
+            ? (<TaskEdit isChecked={isChecked} handleKeyPress={handleKeyPress} setItemTextValue={handleOnInputChange}/>) 
+            : <TaskItem isChecked={isChecked} handleClickEdit={handleClickEdit}/>}
+    </ItemTextContext.Provider>
+        
+    );
 }
+
 type TaskProps = {
-    isChecked:boolean, 
-    itemTextValue:string
+    isChecked:boolean
 }
 
 type TaskEditProps = TaskProps 
@@ -44,14 +49,22 @@ type TaskEditProps = TaskProps
 type TaskItemProps = TaskProps 
 & {handleClickEdit: () => void};
 
-function TaskEdit({isChecked, handleKeyPress, itemTextValue, setItemTextValue} : TaskEditProps):JSX.Element{
-    return (<div className={isChecked ? `text-field item-done` : `text-field`}>
-        <input type='text' defaultValue={itemTextValue} autoFocus onKeyDown={handleKeyPress} className='edit-form-task' onChange={setItemTextValue}/>
-        </div>)
+function TaskEdit({isChecked, handleKeyPress, setItemTextValue} : TaskEditProps):JSX.Element{
+    return (
+    <ItemTextContext.Consumer>
+        {itemTextValue => 
+            <div className={isChecked ? `text-field item-done` : `text-field`}>
+            <input type='text' defaultValue={itemTextValue.itemTextValue} autoFocus onKeyDown={handleKeyPress} className='edit-form-task' onChange={setItemTextValue}/>
+            </div>
+        }  
+    </ItemTextContext.Consumer>)
 }
 
-function TaskItem({isChecked, handleClickEdit, itemTextValue} : TaskItemProps){
-    return (<div className={isChecked ? `text-field item-done` : `text-field`} onClick={handleClickEdit}><p>{itemTextValue}</p></div>);
+function TaskItem({isChecked, handleClickEdit} : TaskItemProps){
+    const itemTextValue = useContext(ItemTextContext).itemTextValue;
+    return (
+            <div className={isChecked ? `text-field item-done` : `text-field`} onClick={handleClickEdit}><p>{itemTextValue}</p></div>
+        );
 }
 
 
