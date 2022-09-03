@@ -1,5 +1,5 @@
-// import logo from './logo.svg';
 import '../App.css';
+// import TaskEditComponent from './Task-edit';
 import {TaskComponent} from './Task-item';
 
 function App() {
@@ -8,8 +8,7 @@ function App() {
       <div className='to-do-list'>
         <div className='item'>
           <TaskComponent />
-          {/* <div className='square-field'></div><div className='text-field'>fsdfs</div>
-          <div className='square-field checked-item'></div><div className='text-field'>fsdfs</div> */}
+          {/* <TaskEditComponent/> */}
         </div>
       </div>
     </div>

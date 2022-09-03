@@ -42,11 +42,17 @@
   grid-column: 2/11;
 }
 
-.text-field p{
+.text-field p {
   display: inline-block;
   vertical-align: middle;
   border-bottom: #282c34 dashed;
   padding: 0 2% 1% 2%;
+}
+
+.text-field input{
+  margin-top: 4%;
+  border-style: none;
+  border-bottom: #282c34 dashed;
 }
 
 .item-done p
