@@ -45,15 +45,36 @@
 .text-field p {
   display: inline-block;
   vertical-align: middle;
+  min-width: 10vw;
   border-bottom: #282c34 dashed;
-  padding: 0 2% 1% 2%;
+  padding: 0% 2% 1% 2%;
+  
+}
+.text-field p:hover {
+  cursor:pointer;
 }
 
 .text-field input{
-  margin-top: 4%;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 3%;
+  width: auto;
   border-style: none;
   border-bottom: #282c34 dashed;
 }
+
+.text-field input:hover{
+  margin-top: 3%;
+  border-style: none;
+  border-bottom: red dashed;
+}
+
+.text-field input:focus{
+  outline: none;
+  border-bottom: red dashed;
+}
+
 
 .item-done p
 {

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import React, {useState} from "react";
 
 export function TaskComponent() : JSX.Element{
     const [isChecked, clickCheck] = useState(false);
@@ -11,6 +11,8 @@ export function TaskComponent() : JSX.Element{
         setEdit(true);
     }
 
+    const [itemTextValue, setItemTextValue] = useState('');
+
     const handleKeyPress = (evt : React.KeyboardEvent<HTMLInputElement>) =>{
         console.log(evt.code);
         if(evt.code === 'Enter'){
@@ -18,32 +20,38 @@ export function TaskComponent() : JSX.Element{
         }
     }
 
+    const handleOnInputChange = (event : React.FormEvent<HTMLInputElement>) => {
+        setItemTextValue(event.currentTarget.value)
+    }
+
     return (
     <>
         <div className={isChecked ? `square-field checked-item` : `square-field`} onClick={handleClickSquare}></div>
         {isEditing 
-        // ? (<div className={isChecked ? `text-field item-done` : `text-field`}><input type='text' defaultValue='fdsfs' autoFocus onKeyDown={handleKeyPress}/></div>) 
-        ? (<TaskEdit isChecked={isChecked} handleKeyPress={handleKeyPress}/>) 
-        // : (<div className={isChecked ? `text-field item-done` : `text-field`} onClick={handleClickEdit}><p>fsdfs</p></div>)}
-        : <TaskItem isChecked={isChecked} handleClickEdit={handleClickEdit} />}
+        ? (<TaskEdit isChecked={isChecked} handleKeyPress={handleKeyPress} itemTextValue={itemTextValue} setItemTextValue={handleOnInputChange}/>) 
+        : <TaskItem isChecked={isChecked} handleClickEdit={handleClickEdit} itemTextValue={itemTextValue}/>}
     </>);
 }
 type TaskProps = {
     isChecked:boolean, 
-    // handleKeyPress: (evt: React.KeyboardEvent<HTMLInputElement>) => void
+    itemTextValue:string
 }
+
 type TaskEditProps = TaskProps 
-& {handleKeyPress: (evt: React.KeyboardEvent<HTMLInputElement>) => void};
+& {handleKeyPress: (evt: React.KeyboardEvent<HTMLInputElement>) => void,
+    setItemTextValue: (event: React.FormEvent<HTMLInputElement>) => void};
 
 type TaskItemProps = TaskProps 
 & {handleClickEdit: () => void};
 
-function TaskEdit({isChecked, handleKeyPress} : TaskEditProps):JSX.Element{
-    return (<div className={isChecked ? `text-field item-done` : `text-field`}><input type='text' defaultValue='fdsfs' autoFocus onKeyDown={handleKeyPress}/></div>)
+function TaskEdit({isChecked, handleKeyPress, itemTextValue, setItemTextValue} : TaskEditProps):JSX.Element{
+    return (<div className={isChecked ? `text-field item-done` : `text-field`}>
+        <input type='text' defaultValue={itemTextValue} autoFocus onKeyDown={handleKeyPress} className='edit-form-task' onChange={setItemTextValue}/>
+        </div>)
 }
 
-function TaskItem({isChecked, handleClickEdit} : TaskItemProps){
-    return (<div className={isChecked ? `text-field item-done` : `text-field`} onClick={handleClickEdit}><p>fsdfs</p></div>);
+function TaskItem({isChecked, handleClickEdit, itemTextValue} : TaskItemProps){
+    return (<div className={isChecked ? `text-field item-done` : `text-field`} onClick={handleClickEdit}><p>{itemTextValue}</p></div>);
 }
 
 
