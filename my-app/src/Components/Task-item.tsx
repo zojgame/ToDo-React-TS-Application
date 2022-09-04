@@ -1,8 +1,12 @@
 import React, {useContext, useState} from "react";
+import { TaskType } from "./Taks-type";
 
 const ItemTextContext = React.createContext({itemTextValue : ''});
 
-export function TaskComponent() : JSX.Element{
+type TaskComponentProps = {
+    task : TaskType
+}
+export function TaskComponent({task} : TaskComponentProps) : JSX.Element{
     const [isChecked, clickCheck] = useState(false);
     const handleClickSquare = () => {
         clickCheck(!isChecked);
@@ -13,10 +17,9 @@ export function TaskComponent() : JSX.Element{
         setEdit(true);
     }
 
-    const [itemTextValue, setItemTextValue] = useState('');
+    const [itemTextValue, setItemTextValue] = useState(task.text);
 
-    const handleKeyPress = (evt : React.KeyboardEvent<HTMLInputElement>) =>{
-        console.log(evt.code);
+    const handleKeyPress = (evt : React.KeyboardEvent<HTMLInputElement>) => {
         if(evt.code === 'Enter'){
             setEdit(false);
         }
