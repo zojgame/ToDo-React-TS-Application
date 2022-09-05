@@ -2,21 +2,21 @@ import { TaskComponent } from "./Task-item";
 import { store } from "../store/store";
 import { addTask } from "../store/store";
 import AddTaskComponent from "./Add-task";
-import { TaskType } from "./Taks-type";
+// import { TaskType } from "./Taks-type";
 import { nanoid } from "@reduxjs/toolkit";
-// import { useSelector } from "react-redux";
-// import { State } from "./state";
+import { useSelector } from "react-redux";
+import { State } from "./state";
 
 
 function TaskListComponent():JSX.Element{
-    const initialTask : TaskType = {
-        id: nanoid(),
-        text: 'first Task',
-    } 
+    // const initialTask : TaskType = {
+    //     id: nanoid(),
+    //     text: 'first Task',
+    // } 
 
-    store.dispatch(addTask(initialTask));
-    const tasks = store.getState().editReducer.taskList;
-    // const tasks = useSelector((state : State) => state.editReducer.taskList)
+    // store.dispatch(addTask(initialTask));
+    // const tasks = store.getState().editReducer.taskList;
+    const tasks = useSelector((state : State) => state.editReducer.taskList)
 
     return (
         <div className='to-do-list'>
