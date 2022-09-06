@@ -1,6 +1,6 @@
 // IMPORTS
 import {combineReducers, configureStore, createSlice} from '@reduxjs/toolkit';
-import {TaskType} from '../Components/Taks-type';
+import {TaskType} from '../Components/Task-type';
 // import {TaskComponent} from '../Components/Task-item';
 // import {configureStore} from 'redux';
 
@@ -24,12 +24,16 @@ const editReducer = createSlice({
         },
         addTask: (state, action) => {
             state.taskList = [...state.taskList, action.payload];
+        },
+        deleteTask: (state, action) => {
+            const newList = state.taskList.filter((task) => task.id !== action.payload);
+            state.taskList = newList;
         }
     }
 
 });
 
-export const {addTask} = editReducer.actions;
+export const {addTask, deleteTask} = editReducer.actions;
 
 // ROOTREDUCER
 export const rootReducer = combineReducers({

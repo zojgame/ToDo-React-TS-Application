@@ -1,6 +1,6 @@
 import { addTask, store } from "../store/store";
 import { nanoid } from "@reduxjs/toolkit";
-import { TaskType } from "./Taks-type";
+import { TaskType } from "./Task-type";
 import { useDispatch } from 'react-redux';
 
 

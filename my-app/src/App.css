@@ -22,7 +22,7 @@
   padding: 1%;
 }
 
-.item div{
+.item > div{
   border:2px solid #282c34;
 }
 
@@ -34,18 +34,6 @@
 .square-field:hover{
   border: 2px solid red;
   cursor: pointer;
-}
-
-.text-field{
-  grid-column: 2/11;
-}
-
-.text-field p {
-  display: inline-block;
-  vertical-align: middle;
-  min-width: 10vw;
-  border-bottom: #282c34 dashed;
-  padding: 0% 2% 1% 2%;  
 }
 
 .text-field p:hover {
@@ -98,7 +86,36 @@ div.add-button:hover{
   cursor: pointer;
 }
 
+.text-field{
+  grid-column: 2/11;
+  display: grid;
+}
 
+.delete-btn-container{
+  display: block;
+  grid-column: 10/11;
+  padding-top: 15%;
+}
+
+.delete-btn{
+  display: inline-block;
+  background: red;
+}
+
+.delete-btn img{
+  display: inline-block;
+  padding: 2px 2px 0 2px;
+  width: 30px;
+}
+
+.text-field p {
+  display: inline-block;
+  grid-column: 6/7;
+  vertical-align: middle;
+  min-width: 10vw;
+  border-bottom: #282c34 dashed;
+  padding: 0% 2% 1% 2%;  
+}
 
 
 
