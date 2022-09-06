@@ -1,8 +1,6 @@
 // IMPORTS
 import {combineReducers, configureStore, createSlice} from '@reduxjs/toolkit';
 import {TaskType} from '../Components/Task-type';
-// import {TaskComponent} from '../Components/Task-item';
-// import {configureStore} from 'redux';
 
 //  REDUCER
 type InitialState = {

@@ -102,6 +102,10 @@ div.add-button:hover{
   background: red;
 }
 
+.delete-btn:hover{
+  cursor:pointer;
+}
+
 .delete-btn img{
   display: inline-block;
   padding: 2px 2px 0 2px;
