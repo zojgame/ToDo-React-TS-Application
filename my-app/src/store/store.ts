@@ -28,12 +28,16 @@ const editReducer = createSlice({
         deleteTask: (state, action) => {
             const newList = state.taskList.filter((task) => task.id !== action.payload);
             state.taskList = newList;
+        },
+        editTask : (state, action) => {
+            const editedTask : TaskType= action.payload;
+            const newList = state.taskList.filter((task) => task.id !== editedTask.id);
+            state.taskList = [...newList, editedTask];
         }
     }
-
 });
 
-export const {addTask, deleteTask} = editReducer.actions;
+export const {addTask, deleteTask, editTask} = editReducer.actions;
 
 // ROOTREDUCER
 export const rootReducer = combineReducers({

@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import { TaskType } from "./Task-type";
 import del from "../images/delete.png";
 import { store } from "../store/store";
-import { deleteTask } from "../store/store";
+import { deleteTask, editTask } from "../store/store";
 import { useDispatch } from "react-redux";
 
 const ItemTextContext = React.createContext({itemTextValue : ''});
@@ -13,14 +13,16 @@ type TaskComponentProps = {
 export function TaskComponent({task} : TaskComponentProps) : JSX.Element{
     const [isChecked, clickCheck] = useState(false);
     const dispatch = useDispatch();
+    const currentItemId = store.getState().editReducer.taskList.filter((t) =>        
+            t.id === task.id
+        )[0].id;
+
     const handleClickSquare = () => {
         clickCheck(!isChecked);
     }
 
     const handleDeleteBtn = () => {
-        const currentItemId = store.getState().editReducer.taskList.filter((t) =>        
-            t.id === task.id
-        )[0].id;
+        
         dispatch(deleteTask(currentItemId));
         }
 
@@ -34,6 +36,7 @@ export function TaskComponent({task} : TaskComponentProps) : JSX.Element{
     const handleKeyPress = (evt : React.KeyboardEvent<HTMLInputElement>) => {
         if(evt.code === 'Enter'){
             setEdit(false);
+            dispatch(editTask({...task, text: itemTextValue}));
         }
     }
 
