@@ -121,6 +121,10 @@ div.add-button:hover{
   padding: 0% 2% 1% 2%;  
 }
 
+.api-board{
+  border: 1px solid white;
+  float: right;
+}
 
 
 

@@ -1,4 +1,4 @@
-import { addTask, store } from "../store/store";
+import { addTask } from "../store/store";
 import { nanoid } from "@reduxjs/toolkit";
 import { TaskType } from "./Task-type";
 import { useDispatch } from 'react-redux';
@@ -12,7 +12,6 @@ function AddTaskComponent():JSX.Element{
             text: 'new Task'
         }
         dispatch(addTask(newTask));
-        console.log(store.getState().editReducer.taskList);
     }
 
     return (<div className="add-btn-container">
